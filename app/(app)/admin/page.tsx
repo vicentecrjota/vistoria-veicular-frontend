@@ -36,9 +36,17 @@ export default function AdminPage() {
 
   async function loadFuncionarios() {
     setLoading(true);
-    getFuncionarios()
-      .then(setFuncionarios)
-      .finally(() => setLoading(false));
+    try {
+      const data = await getFuncionarios();
+      setFuncionarios(data);
+    } catch (err) {
+      // Endpoint indisponível (404/500/rede): não derruba a página, só
+      // mostra a lista vazia — o usuário já vê "Nenhum funcionário cadastrado."
+      console.error("Erro ao carregar funcionários:", err);
+      setFuncionarios([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {

@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { clearAuth, getUser } from "@/lib/auth";
+import { clearAuth, getUser, type User } from "@/lib/auth";
 
 const NAV_ITEMS = [
   {
@@ -38,7 +39,16 @@ const NAV_ITEMS = [
 export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  const user = getUser();
+  // getUser() reads localStorage, which doesn't exist during SSR. Reading it
+  // directly in render made the server markup (no user) diverge from the
+  // client's first paint (real user), causing a hydration mismatch. Starting
+  // from null and filling it in after mount keeps the first client render
+  // identical to the server's.
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    setUser(getUser());
+  }, []);
 
   function handleLogout() {
     clearAuth();
