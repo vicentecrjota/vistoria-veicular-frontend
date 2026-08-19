@@ -47,81 +47,165 @@ export default function LoginPage() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center"
-      style={{ backgroundColor: "var(--color-background)" }}
+      className="px-6"
+      style={{
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#16181d",
+      }}
     >
-      <div className="w-full max-w-sm">
-        {/* Logo / Header */}
-        <div className="text-center mb-8">
+      <div className="relative w-[360px]">
+        {/* Texto vertical decorativo — posicionado absoluto à esquerda da caixa, não afeta a centralização */}
+        <div
+          aria-hidden
+          className="hidden md:block select-none"
+          style={{
+            position: "absolute",
+            right: "100%",
+            marginRight: "2.5rem",
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}
+        >
           <div
-            className="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-4"
-            style={{ backgroundColor: "var(--color-primary)" }}
+            style={{
+              writingMode: "vertical-rl",
+              transform: "rotate(180deg)",
+              fontSize: "22px",
+              fontWeight: 600,
+              letterSpacing: "0.1em",
+              color: "#2d2e33",
+              whiteSpace: "nowrap",
+            }}
           >
-            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
+            VISTORIA VEICULAR
           </div>
-          <h1 className="text-2xl font-semibold text-slate-800">Vistoria Veicular</h1>
-          <p className="text-sm text-slate-500 mt-1">Acesso interno</p>
         </div>
 
-        {/* Card */}
-        <div className="card p-6">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div>
-              <label className="label" htmlFor="email">E-mail</label>
-              <input
-                id="email"
-                type="email"
-                autoComplete="email"
-                placeholder="seu@email.com"
-                className={`input-field ${errors.email ? "error" : ""}`}
-                {...register("email")}
-              />
-              {errors.email && (
-                <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
-              )}
-            </div>
+        <h1
+          style={{
+            fontSize: "28px",
+            fontWeight: 600,
+            letterSpacing: "-0.02em",
+            color: "#fafafa",
+          }}
+        >
+          Entrar na conta
+        </h1>
+        <p style={{ fontSize: "14px", color: "#71717a", marginTop: "6px" }}>
+          Acesse o painel de vistorias
+        </p>
 
-            <div>
-              <label className="label" htmlFor="password">Senha</label>
-              <input
-                id="password"
-                type="password"
-                autoComplete="current-password"
-                placeholder="••••••••"
-                className={`input-field ${errors.password ? "error" : ""}`}
-                {...register("password")}
-              />
-              {errors.password && (
-                <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
-              )}
-            </div>
-
-            {error && (
-              <div className="bg-red-50 border border-red-200 rounded-md px-3 py-2.5">
-                <p className="text-red-600 text-sm">{error}</p>
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="btn-primary w-full justify-center py-2.5"
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-5">
+          <div>
+            <label
+              htmlFor="email"
+              style={{
+                display: "block",
+                fontSize: "13px",
+                fontWeight: 500,
+                color: "#71717a",
+                marginBottom: "6px",
+              }}
             >
-              {isSubmitting ? (
-                <>
-                  <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                  </svg>
-                  Entrando...
-                </>
-              ) : (
-                "Entrar"
-              )}
-            </button>
-          </form>
+              E-mail
+            </label>
+            <input
+              id="email"
+              type="email"
+              autoComplete="email"
+              placeholder="nome@empresa.com"
+              className="login-input"
+              {...register("email")}
+            />
+            {errors.email && (
+              <p className="mt-1.5 text-xs" style={{ color: "#dc2626" }}>
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <div className="flex items-center justify-between" style={{ marginBottom: "6px" }}>
+              <label
+                htmlFor="password"
+                style={{
+                  fontSize: "13px",
+                  fontWeight: 500,
+                  color: "#71717a",
+                }}
+              >
+                Senha
+              </label>
+              <a
+                href="#"
+                style={{ fontSize: "13px", color: "#dc2626" }}
+                className="hover:opacity-80 transition-opacity"
+              >
+                Esqueceu a senha?
+              </a>
+            </div>
+            <input
+              id="password"
+              type="password"
+              autoComplete="current-password"
+              placeholder="••••••••"
+              className="login-input"
+              {...register("password")}
+            />
+            {errors.password && (
+              <p className="mt-1.5 text-xs" style={{ color: "#dc2626" }}>
+                {errors.password.message}
+              </p>
+            )}
+          </div>
+
+          {error && (
+            <div
+              className="rounded-md px-3 py-2.5"
+              style={{
+                backgroundColor: "rgba(220,38,38,0.08)",
+                border: "1px solid rgba(220,38,38,0.3)",
+              }}
+            >
+              <p style={{ color: "#dc2626", fontSize: "13px" }}>{error}</p>
+            </div>
+          )}
+
+          <button type="submit" disabled={isSubmitting} className="login-btn">
+            {isSubmitting ? (
+              <>
+                <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>
+                Entrando...
+              </>
+            ) : (
+              <>
+                Entrar
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-6-6l6 6-6 6" />
+                </svg>
+              </>
+            )}
+          </button>
+        </form>
+
+        <div
+          className="mt-8 flex items-center gap-2 justify-center"
+          style={{ borderTop: "1px solid #1c1d21", paddingTop: "20px" }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#52525b" strokeWidth="2">
+            <rect x="5" y="11" width="14" height="9" rx="2" />
+            <path d="M8 11V7a4 4 0 018 0v4" />
+          </svg>
+          <span style={{ fontSize: "12px", color: "#52525b" }}>
+            Ambiente seguro · Acesso restrito
+          </span>
         </div>
       </div>
     </div>

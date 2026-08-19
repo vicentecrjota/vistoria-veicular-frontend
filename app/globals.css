@@ -148,4 +148,50 @@
     font-size: 0.75rem;
     font-weight: 500;
   }
+
+  .login-input {
+    width: 100%;
+    background-color: #18191d;
+    border: 1px solid #27282d;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #fafafa;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .login-input::placeholder {
+    color: #52525b;
+  }
+
+  .login-input:focus {
+    border-color: #dc2626;
+  }
+
+  .login-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #dc2626;
+    color: #fafafa;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 11px 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .login-btn:hover:not(:disabled) {
+    background-color: #b91c1c;
+  }
+
+  .login-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 }
