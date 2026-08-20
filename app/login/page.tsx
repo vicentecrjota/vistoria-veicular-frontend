@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { login } from "@/lib/api";
 import { saveAuth, isAuthenticated } from "@/lib/auth";
+import CadenciaLogoBranco from "@/components/icons/CadenciaLogoBranco";
 
 const schema = z.object({
   email: z.string().email("E-mail inválido"),
@@ -52,11 +53,15 @@ export default function LoginPage() {
         width: "100vw",
         height: "100vh",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        gap: "28px",
         backgroundColor: "#16181d",
       }}
     >
+      <CadenciaLogoBranco style={{ height: "48px", width: "auto" }} />
+
       <div className="relative w-[360px]">
         {/* Texto vertical decorativo — posicionado absoluto à esquerda da caixa, não afeta a centralização */}
         <div

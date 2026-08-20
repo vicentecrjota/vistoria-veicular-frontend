@@ -72,11 +72,13 @@ export interface VistoriaDetalhada extends Vistoria {
   laudo?: Laudo;
 }
 
+export type FuncionarioRole = "admin" | "vistoriador";
+
 export interface Funcionario {
   id: string;
   name: string;
   email: string;
-  role: string;
+  role: FuncionarioRole;
   ativo: boolean;
   created_at: string;
 }
@@ -85,7 +87,7 @@ export interface Funcionario {
 
 export async function login(email: string, password: string) {
   const { data } = await api.post("/auth/login", { email, password });
-  return data as { access_token: string; user: { id: string; name: string; email: string; role: "admin" | "funcionario" } };
+  return data as { access_token: string; user: { id: string; name: string; email: string; role: FuncionarioRole } };
 }
 
 // ── Vistorias ──────────────────────────────────────────────────────────────
@@ -129,6 +131,10 @@ export async function getLaudo(id: string): Promise<Laudo> {
   return data;
 }
 
+export async function deleteVistoria(id: string): Promise<void> {
+  await api.delete(`/vistorias/${id}`);
+}
+
 // ── Admin ──────────────────────────────────────────────────────────────────
 
 export async function getFuncionarios(): Promise<Funcionario[]> {
@@ -140,13 +146,14 @@ export async function criarFuncionario(payload: {
   name: string;
   email: string;
   password: string;
+  role: FuncionarioRole;
 }): Promise<Funcionario> {
   const { data } = await api.post("/admin/funcionarios", payload);
   return data;
 }
 
-export async function desativarFuncionario(id: string): Promise<void> {
-  await api.patch(`/admin/funcionarios/${id}`, { ativo: false });
+export async function deletarFuncionario(id: string): Promise<void> {
+  await api.delete(`/admin/funcionarios/${id}`);
 }
 
 export default api;

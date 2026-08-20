@@ -5,7 +5,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  role: "admin" | "funcionario";
+  role: "admin" | "vistoriador";
 }
 
 export function saveAuth(token: string, user: User) {

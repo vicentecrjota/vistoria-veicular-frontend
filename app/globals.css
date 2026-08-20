@@ -194,4 +194,187 @@
     opacity: 0.7;
     cursor: not-allowed;
   }
+
+  /* Dashboard — mesmo sistema de design da tela de login (tema escuro).
+     Classes próprias (prefixo dash-) para não afetar .card/.btn-primary/.badge,
+     ainda usadas pelas páginas de Admin e Vistorias (tema claro). */
+  .dash-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #dc2626;
+    color: #fafafa;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 10px 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .dash-btn-primary:hover:not(:disabled) {
+    background-color: #b91c1c;
+  }
+
+  .dash-btn-primary:disabled,
+  .dash-btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .dash-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #1c1f26;
+    color: #fafafa;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 10px 16px;
+    border: 1px solid #24272e;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .dash-btn-secondary:hover:not(:disabled) {
+    background-color: #24272e;
+  }
+
+  .dash-input {
+    width: 100%;
+    background-color: #1c1f26;
+    border: 1px solid #24272e;
+    border-radius: 8px;
+    padding: 10px 12px 10px 36px;
+    font-size: 14px;
+    color: #fafafa;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .dash-input::placeholder {
+    color: #52525b;
+  }
+
+  .dash-input:focus {
+    border-color: #dc2626;
+  }
+
+  .dash-card {
+    background-color: #1c1f26;
+    border: 1px solid #24272e;
+    border-radius: 10px;
+  }
+
+  .dash-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .dash-table th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #71717a;
+    padding: 12px 20px;
+    border-bottom: 1px solid #24272e;
+    white-space: nowrap;
+  }
+
+  .dash-table td {
+    padding: 14px 20px;
+    border-top: 1px solid #1f2229;
+    vertical-align: middle;
+  }
+
+  .dash-table tbody tr:first-child td {
+    border-top: none;
+  }
+
+  .dash-table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+  }
+
+  .dash-table tbody tr:hover {
+    background-color: #1f2229;
+  }
+
+  .row-delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: none;
+    background-color: transparent;
+    color: #52525b;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.1s ease, color 0.1s ease, background-color 0.1s ease;
+  }
+
+  .dash-table tbody tr:hover .row-delete-btn {
+    opacity: 1;
+  }
+
+  .row-delete-btn:hover {
+    color: #dc2626;
+    background-color: rgba(220, 38, 38, 0.12);
+  }
+
+  /* Nova Vistoria — mesmo sistema, cantos/bordas próprios do formulário */
+  .nova-input {
+    width: 100%;
+    background-color: #16181d;
+    border: 1px solid #2d323b;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #fafafa;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .nova-input::placeholder {
+    color: #52525b;
+  }
+
+  .nova-input:focus {
+    border-color: #dc2626;
+  }
+
+  .nova-input.error {
+    border-color: #dc2626;
+  }
+
+  .nova-btn-cancel {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: #a1a1aa;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 10px 16px;
+    border: 1px solid #2d323b;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .nova-btn-cancel:hover {
+    background-color: #1c1f26;
+    color: #fafafa;
+  }
 }
